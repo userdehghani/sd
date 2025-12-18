@@ -8,6 +8,7 @@
     "start": "bun run build && bun run dist/index.js"
   },
   "dependencies": {
+    "@elysiajs/openapi": "^1.4.11",
     "elysia": "latest"
   },
   "devDependencies": {
