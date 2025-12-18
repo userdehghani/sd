@@ -1,0 +1,40 @@
+networks:
+  elysia-core:
+    driver: bridge
+
+services:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: elysia-core
+    ports:
+      - "3005:3005"
+    networks:
+      - elysia-core
+  db:
+    image: postgres:14-alpine
+    container_name: elysia-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: core_db
+    ports:
+      - "5432:5432"
+    networks:
+      - elysia-core
+
+  nats:
+    image: nats:latest
+    container_name: elysia-nats
+    ports:
+      - "4222:4222"
+    networks:
+      - elysia-core
+  redis:
+    image: redis:latest
+    container_name: elysia-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - elysia-core
