@@ -1,18 +1,51 @@
 {
-  "name": "app",
-  "version": "1.0.50",
+  "name": "user-service",
+  "version": "1.0.0",
+  "description": "User authentication and profile service with hexagonal architecture",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
-    "build": "bun build  src/index.ts --production --minify --outdir=dist/index.js --target=bun",
-    "start": "bun run build && bun run dist/index.js"
+    "dev": "bun run --watch src/main.ts",
+    "start": "bun run src/main.ts",
+    "build": "bun build src/main.ts --production --minify --outdir=dist --target=bun",
+    "test": "bun test",
+    "test:unit": "bun test tests/unit",
+    "test:integration": "bun test tests/integration",
+    "test:e2e": "bun test tests/e2e",
+    "test:coverage": "bun test --coverage",
+    "lint": "bunx @biomejs/biome check .",
+    "lint:fix": "bunx @biomejs/biome check --apply .",
+    "format": "bunx @biomejs/biome format --write .",
+    "typecheck": "bunx tsc --noEmit",
+    "db:migrate": "echo 'Run database migrations'",
+    "db:seed": "echo 'Run database seeds'",
+    "docker:build": "docker build -t user-service .",
+    "docker:run": "docker run -p 3005:3005 user-service"
   },
   "dependencies": {
     "@elysiajs/openapi": "^1.4.11",
-    "elysia": "latest"
+    "elysia": "^1.2.0"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "@biomejs/biome": "^1.9.0",
+    "@types/bun": "^1.1.0",
+    "bun-types": "^1.1.0"
   },
-  "module": "src/index.js"
+  "module": "src/main.ts",
+  "type": "module",
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "hexagonal-architecture",
+    "ddd",
+    "clean-architecture",
+    "typescript",
+    "bun",
+    "elysia",
+    "authentication",
+    "oauth",
+    "passkey",
+    "webauthn"
+  ],
+  "author": "",
+  "license": "MIT"
 }
