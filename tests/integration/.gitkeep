@@ -1,0 +1,2 @@
+# Integration tests go here
+# These tests require running infrastructure (PostgreSQL, Redis, etc.)
